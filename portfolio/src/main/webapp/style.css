@@ -24,7 +24,7 @@ body {
 #nav {
   float: left;
   width: 100%;
-  height: 300px; /* only for demonstration, should be removed */
+  height: 300px; 
   background: #ccc;
   padding: 20px;
 }
@@ -40,7 +40,7 @@ body {
   padding: 20px;
   width: 100%;
   background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
+  height: 300px; 
 }
 
 /*Each thing about me*/
@@ -49,7 +49,7 @@ body {
   padding: 20px;
   width: 100%;
   background-color: #f1f1f2;
-  height: 300px; /* only for demonstration, should be removed */
+  height: 300px; 
 }
 
 /* Clear floats after the columns */
