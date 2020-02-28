@@ -25,4 +25,12 @@ function addRandomGreeting() {
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
+/**
+ * Fetches a random name from the server and adds it to the DOM.
+ */
+    async function getDataUsingAsyncAwait() {
+    const response = await fetch('/data');
+    const name = await response.text();
+    document.getElementById('name-container').innerText = name;
+    }
 }
