@@ -40,7 +40,6 @@ body {
   padding: 20px;
   width: 100%;
   background-color: #f1f1f1;
-  height: 300px; 
 }
 
 /*Each thing about me*/
@@ -49,7 +48,6 @@ body {
   padding: 20px;
   width: 100%;
   background-color: #f1f1f2;
-  height: 300px; 
 }
 
 /* Clear floats after the columns */
@@ -64,7 +62,7 @@ body {
   background-color: #777;
   padding: 30px;
   text-align: center;
-  color: black;
+  color: white;
 }
 /*For image Gallery*/
 div.gallery {
@@ -88,4 +86,8 @@ div.gallery img {
 div.desc {
   padding: 15px;
   text-align: center;
+}
+
+#name-container {
+  margin-top: 20px;
 }
