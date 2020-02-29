@@ -12,27 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Well done is better than well said.', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+   /**
+   * Fetches a data from the server and adds it to the DOM.
+   */
+   function getDataUsingArrowFunctions() {
+      fetch('/data').then(response => response.json()).then((messages) => {
+      const messageElement = document.getElementById('message-container');
+      messageElement.innerHTML = '';
+      messageElement.appendChild(
+        createListElement(messages[0]));
+      messageElement.appendChild(
+        createListElement(messages[1]));
+      messageElement.appendChild(
+        createListElement(messages[2]));
+      });
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-
-
-}
-    /**
-    * Fetches a data from the server and adds it to the DOM.
-    */
-    function getDataUsingArrowFunctions() {
-    fetch('/data').then(response => response.text()).then((name) => {
-        document.getElementById('name-container').innerHTML = name;
-    });
     }
+    /** Creates an <li> element containing text. */
+    function createListElement(text) {
+        const liElement = document.createElement('li');
+        liElement.innerText = text;
+        return liElement;
+    }
+
