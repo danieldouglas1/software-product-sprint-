@@ -21,13 +21,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import java.util.ArrayList;
+import java.util.*;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
+  //to store quotes
   ArrayList<String> messages= new ArrayList<String>();
+  //to store names and comments
 
+  Hashtable<String, String> h = new Hashtable<String, String>(); 
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {   
@@ -42,14 +45,47 @@ public class DataServlet extends HttpServlet {
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
+
+    
   }
 
-  /**
+ /**
    * Converts a the ArrayList instance into a JSON string using the Gson library. 
    */
   private String convertToJson(ArrayList messages) {
     Gson gson = new Gson();
     String json = gson.toJson(messages);
     return json;
+  }
+
+
+@Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String name= getParameter(request, "name", "");
+    String comment = getParameter(request,"text-input", "");
+    h.put(name, comment);
+
+    // Respond with the result.
+    response.setContentType("text/html;");
+    response.getWriter().print(name);
+    response.getWriter().print(" left the comment: ");
+    response.getWriter().println(comment);
+
+    // Redirect back to the HTML page.
+    //response.sendRedirect("/index.html");
+
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }

@@ -23,6 +23,7 @@
             <li><a href="#My Pictures">My Pictures</a></li>
             <li><a href="#">My Projects</a></li>
             <li><a href="#">My Resume</a></li>
+            <li><a href="#Comment Section">Comment Section</a></li>
             </ul>
         </div>
     </div>
@@ -114,7 +115,7 @@
 <!-- Favorite Artistes -->
   <div id="sections">
     <h1><a name="Favorite Artistes">Favorite Artistes </a></h1>
- <div class="gallery">
+    <div class="gallery">
         <a target="_blank" href="/images/nba.jpg">
             <img src="/images/nba.jpg" alt="Lucifer" width="600" height="400"/>
         </a>
@@ -157,6 +158,7 @@
     </div>
 
   </div>
+
 <!-- My Pictures -->
   <div id="sections">
     <h1><a name= "My Pictures"> My Pictures</a></h1>
@@ -166,8 +168,20 @@
         </a>
 
     </div>
+  </div>
 
-  
+<!-- Comment Section -->
+  <div id="sections">
+        <h1><a name= "Comment Section"> Comments</a></h1>
+        <form action="/data" method="POST">
+
+        <label for="fname">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <p>Enter a comment:</p>
+        <textarea name="text-input"> </textarea>
+        <br/><br/>
+        <input type="submit" />
+    </form>
   </div>
 
   <!-- Footer -->
@@ -181,7 +195,7 @@
     </a>
 
     <div id="content">
-      <p>Click here to quotes:</p>
+      <p>Click here for quotes:</p>
       <button onclick="getDataUsingArrowFunctions()">Quotes</button>
       <div id="message-container"></div>
     </div>
