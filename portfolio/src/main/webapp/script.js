@@ -12,26 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-   /**
-   * Fetches a data from the server and adds it to the DOM.
-   */
-   function getDataUsingArrowFunctions() {
-      fetch('/data').then(response => response.json()).then((messages) => {
-      const messageElement = document.getElementById('message-container');
-      messageElement.innerHTML = '';
-      messageElement.appendChild(
-        createListElement(messages[0]));
-      messageElement.appendChild(
-        createListElement(messages[1]));
-      messageElement.appendChild(
-        createListElement(messages[2]));
-      });
+/** Fetches comments from the server and adds them to the DOM. */
+function loadComments() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('text-input');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
+  });
+}
 
-    }
-    /** Creates an <li> element containing text. */
-    function createListElement(text) {
-        const liElement = document.createElement('li');
-        liElement.innerText = text;
-        return liElement;
-    }
+/** Creates an element that represents a comment */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
 
+  const nameElement = document.createElement('span');
+  nameElement.innerText = comment;
+  commentElement.appendChild(nameElement);
+  return commentElement;
+}
