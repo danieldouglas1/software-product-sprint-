@@ -12,8 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+/** Creates a chart and adds it to the page. */
+function drawChart() {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Sport');
+  data.addColumn('number', 'Views');
+        data.addRows([
+          ['FIFA World Cup Final', 750],
+          ['Euro Finals', 290],
+          ['UEFA Champions League Finals', 150],
+          ['Summer Olympics 100m Final', 130]
+        ]);
+
+  const options = {
+    'title': 'Most Watched Sport Events Worldwide',
+    'width':500,
+    'height':400
+  };
+  const chart = new google.visualization.PieChart(
+      document.getElementById('chart-container'));
+  chart.draw(data, options);
+}
+
+
 /** Fetches comments from the server and adds them to the DOM. */
-function loadComments() {
+function loadComments() {    
   fetch('/data').then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('text-input');
     comments.forEach((comment) => {
