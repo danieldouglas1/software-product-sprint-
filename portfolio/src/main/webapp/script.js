@@ -12,17 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Well done is better than well said.', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+/** Fetches comments from the server and adds them to the DOM. */
+function loadComments() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('text-input');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
+  });
+}
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+/** Creates an element that represents a comment */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const nameElement = document.createElement('span');
+  nameElement.innerText = comment;
+  commentElement.appendChild(nameElement);
+  return commentElement;
 }
