@@ -15,26 +15,27 @@
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
-/** Creates a chart and adds it to the page. */
+/** Fetches langauge data and uses it to create a chart. */
 function drawChart() {
-  const data = new google.visualization.DataTable();
-  data.addColumn('string', 'Sport');
-  data.addColumn('number', 'Views');
-        data.addRows([
-          ['FIFA World Cup Final', 750],
-          ['Euro Finals', 290],
-          ['UEFA Champions League Finals', 150],
-          ['Summer Olympics 100m Final', 130]
-        ]);
+  fetch('/language-data').then(response => response.json())
+  .then((languageVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Language');
+    data.addColumn('number', 'Votes');
+    Object.keys(languageVotes).forEach((language) => {
+      data.addRow([language, languageVotes[language]]);
+    });
 
-  const options = {
-    'title': 'Most Watched Sport Events Worldwide',
-    'width':500,
-    'height':400
-  };
-  const chart = new google.visualization.PieChart(
-      document.getElementById('chart-container'));
-  chart.draw(data, options);
+    const options = {
+      'title': 'Favorite Programming Languages',
+      'width':600,
+      'height':500
+    };
+
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
+  });
 }
 
 
