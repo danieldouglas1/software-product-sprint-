@@ -12,8 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+/** Fetches langauge data and uses it to create a chart. */
+function drawChart() {
+  fetch('/language-data').then(response => response.json())
+  .then((languageVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Language');
+    data.addColumn('number', 'Votes');
+    Object.keys(languageVotes).forEach((language) => {
+      data.addRow([language, languageVotes[language]]);
+    });
+
+    const options = {
+      'title': 'Favorite Programming Languages',
+      'width':600,
+      'height':500
+    };
+
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
+  });
+}
+
+
 /** Fetches comments from the server and adds them to the DOM. */
-function loadComments() {
+function loadComments() {    
   fetch('/data').then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('text-input');
     comments.forEach((comment) => {

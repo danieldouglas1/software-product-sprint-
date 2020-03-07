@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Favorite Programming Language</title>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h1>Favorite Programming Language</h1>
+    <div id="chart-container"></div>
+    <h2>Vote for your Favorite Programming Language</h2>
+    <form action="/language-data" method="POST">
+      <select name="language">
+        <option value="Java">Java</option>
+        <option value="Python">Python</option>
+        <option value="C++">C++</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="Golang">Golang</option>
+        <option value="Ruby">Ruby</option>
+        <option value="Other">Other</option>
+      </select>
+      <button>Submit</button>
+    </form>
+    <p><a href="index.html">Click Here to Go back to Homepage</a></p>
+  </body>
+</html>
